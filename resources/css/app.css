@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.custom-checkbox + .custom-checkbox-label {
+    background-image: url('/images/submissions/car.jpeg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    border-radius: 0.375rem; /* rounded-lg */
+}
+
+.custom-checkbox:checked + .custom-checkbox-label {
+    background-image: url('/images/submissions/car.jpeg'); /* Image for the checked state */
+}

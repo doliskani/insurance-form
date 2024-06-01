@@ -101,7 +101,7 @@ open your browser and enter localhost:8010 address.
 
 
 ###  spent time for this commit 
-It took 1 hour and 40 minutes. It should have taken less time, but i was thinking about models and its fields.                                                  
+It took more than 3 hour and 30 minutes. I had rest between this commit.                                                  
 
 ## License
 

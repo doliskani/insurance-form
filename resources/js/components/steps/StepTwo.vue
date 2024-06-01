@@ -15,24 +15,24 @@
             <div class="grid grid-cols-2 gap-4 ">
                 <div class="space-y-3">
                     <label for="first_name" class="text-sm text-gray-700">First name *</label>
-                    <input type="text" id="first_name" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="This is placeholder">
+                    <input type="text" id="first_name" v-model="step_two.first_name"  class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="Enter First name">
                 </div>
                 <div class="space-y-3">
                     <label for="last_name" class="text-sm text-gray-700">Last name *</label>
-                    <input type="text" id="last_name" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="This is placeholder">
+                    <input type="text" id="last_name" v-model="step_two.last_name"  class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="Enter Last name">
                 </div>
                 <div class="space-y-3 col-span-full">
                     <label for="email" class="text-sm text-gray-700">Email Address *</label>
-                    <input type="text" id="email" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="This is placeholder">
+                    <input type="text" id="email" v-model="step_two.email"  class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="Enter Email Address">
                 </div>
                 <div class="space-y-3 col-span-full">
                     <label for="phone" class="text-sm text-gray-700">Phone No *</label>
-                    <input type="text" id="phone" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="This is placeholder">
+                    <input type="text" id="phone" v-model="step_two.phone"  class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="Enter Phone No">
                 </div>
 
                 <div class="relative inline-block col-span-full">
                     <label for="contact_preference" class="block text-sm text-gray-700 ">Contact Preference *</label>
-                    <select id="contact_preference" class="mt-3 appearance-none text-gray-600 w-full py-3 px-4 pe-9 text-base border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300">
+                    <select id="contact_preference" v-model="step_two.contact_preference"  class="mt-3 appearance-none text-gray-600 w-full py-3 px-4 pe-9 text-base border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300">
                         <option value="email">Email</option>
                         <option value="phone">Phone</option>
                     </select>
@@ -43,11 +43,12 @@
                     </div>
                 </div>
                 <button type="button"
+                    @click="updateStep()"
                     class="px-5 py-3.5 mt-2 col-span-2 rounded-xl text-white text-sm tracking-wider font-medium border border-current outline-none bg-blue-600 hover:bg-blue-800 active:bg-blue-700">
                     Continue
                 </button>
                 <div class=" col-span-full text-center">
-                    <a href="" class="text-blue-700  mx-auto ">Back</a>
+                    <a href="" @click.prevent="updateStep(false)" class="text-blue-700  mx-auto ">Back</a>
                 </div>
             </div>
 
@@ -61,13 +62,27 @@
 
 <script>
 export default {
-  data() {
+    data() {
     return {
-      bigImage: "/images/submissions/step_2.png",
-      checkboxImg: "/images/submissions/car.jpeg",
-
+        bigImage: "/images/submissions/step_2.png",
+        checkboxImg: "/images/submissions/car.jpeg",
+        step_two : {
+            "first_name" : "",
+            "last_name" : "",
+            "email" : "",
+            "phone" : "",
+            "contact_preference" : "",
+        }
     };
-  },
+    },
+    watch: {
+        step_two: {
+            handler(value) {
+                this.$store.commit("form/setForm", { ...value });
+            },
+            deep: true,
+        },
+    },
 };
 </script>
 

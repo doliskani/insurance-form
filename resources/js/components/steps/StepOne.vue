@@ -13,8 +13,8 @@
         <div class="options  flex flex-col gap-6">
             <div class="relative cursor-pointer">
                 <div class="flex items-center  absolute right-0 top-0  z-[11]">
-                    <input id="checkbox1" type="checkbox" class="hidden peer" checked />
-                    <label for="checkbox1"
+                    <input id="home_insurance" v-model="step_one.home_insurance" type="checkbox" class="hidden peer" checked />
+                    <label for="home_insurance"
                     class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-blue-500 w-6 h-6 cursor-pointer bg-blue-500 border  rounded-tr-md rounded-bl-md overflow-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-full fill-white" viewBox="0 0 520 520">
                         <path
@@ -40,8 +40,8 @@
             </div>
             <div class="relative cursor-pointer">
                 <div class="flex items-center  absolute right-0 top-0  z-[11]">
-                    <input id="checkbox1" type="checkbox" class="hidden peer" checked />
-                    <label for="checkbox1"
+                    <input id="auto_insurance"  v-model="step_one.auto_insurance" type="checkbox" class="hidden peer" checked />
+                    <label for="auto_insurance"
                     class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-blue-500 w-6 h-6 cursor-pointer bg-blue-500 border  rounded-tr-md rounded-bl-md overflow-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-full fill-white" viewBox="0 0 520 520">
                         <path
@@ -66,8 +66,8 @@
             </div>
             <div class="relative cursor-pointer">
                 <div class="flex items-center  absolute right-0 top-0  z-[11]">
-                    <input id="checkbox1" type="checkbox" class="hidden peer" checked />
-                    <label for="checkbox1"
+                    <input id="recreational_vehicle_insurance" v-model="step_one.recreational_vehicle_insurance" type="checkbox" class="hidden peer" checked />
+                    <label for="recreational_vehicle_insurance"
                     class="relative flex items-center justify-center p-1 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-blue-500 w-6 h-6 cursor-pointer bg-blue-500 border  rounded-tr-md rounded-bl-md overflow-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-full fill-white" viewBox="0 0 520 520">
                         <path
@@ -92,7 +92,8 @@
                 <div class=" absolute top-0 z-10 rounded-md bg-gradient-to-r from-gray-950 h-full w-full"></div>
             </div>
 
-            <button type="button"
+            <button type="subbutton"
+                @click="stepPlus()"
                 class="px-5 py-3.5 rounded-xl text-white text-sm tracking-wider font-medium border border-current outline-none bg-blue-600 hover:bg-blue-800 active:bg-blue-700">
                 Agree and Continue
             </button>
@@ -109,13 +110,34 @@
 
 <script>
 export default {
-  data() {
-    return {
-      bigImage: "/images/submissions/step_1.png",
-      checkboxImg: "/images/submissions/car.jpeg",
+    data() {
+        return {
+            bigImage: "/images/submissions/step_1.png",
+            checkboxImg: "/images/submissions/car.jpeg",
 
-    };
-  },
+            step_one : {
+                "home_insurance" : false,
+                "auto_insurance" : false,
+                "recreational_vehicle_insurance" : false,
+                "agreement" : false,
+            }
+
+        };
+    },
+    watch: {
+        step_one: {
+            handler(value) {
+                this.$store.commit("form/setForm", { ...value });
+            },
+            deep: true,
+        },
+    },
+    methods : {
+       stepPlus(){
+            this.step_one.agreement = true;
+            this.updateStep()
+       }
+    }
 };
 </script>
 

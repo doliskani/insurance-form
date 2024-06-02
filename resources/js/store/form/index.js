@@ -9,8 +9,8 @@ export default {
 
             "first_name" : "",
             "last_name" : "",
-            "email" : "",
-            "phone" : "",
+            "email" : null,
+            "phone" : null,
             "contact_preference" : "",
 
             "street" : "",
@@ -36,7 +36,6 @@ export default {
             keys.map(key => {
                 state.form[key] = val[key]
             });
-            console.log(state.form);
         },
         setStep(state , val) {
             return state.step = val
@@ -45,7 +44,7 @@ export default {
     actions: {
         storeForm({ commit , state } , endPoint) {
             axios.post(endPoint , state.form).then((response) => {
-                
+                console.log(response.data);
             })
         },
     },

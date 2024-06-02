@@ -51,7 +51,7 @@
                     <input type="text" id="zipcode"  v-model="step_three.zipcode" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-gray-300  disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-gray-300" placeholder="">
                 </div>
                 <button type="button"
-                    @click="updateStep()"
+                    @click="storeForm()"
                     class="px-5 py-3.5 mt-2 col-span-2 rounded-xl text-white text-sm tracking-wider font-medium border border-current outline-none bg-blue-600 hover:bg-blue-800 active:bg-blue-700">
                     Continue
                 </button>
@@ -91,6 +91,12 @@ export default {
             deep: true,
         },
     },
+    methods : {
+        storeForm(){
+            const endPoint = `form/store`;
+            this.$store.dispatch("form/storeForm", endPoint);
+        }
+    }
 };
 </script>
 

@@ -101,7 +101,7 @@ open your browser and enter localhost:8010 address.
 
 
 ###  spent time for this commit 
-It took more than 1 hour and 10 minutes.              
+It took more than 1 hour and 20 minutes.              
 
 ## License
 

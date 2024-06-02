@@ -63,17 +63,17 @@
 <script>
 export default {
     data() {
-    return {
-        bigImage: "/images/submissions/step_2.png",
-        checkboxImg: "/images/submissions/car.jpeg",
-        step_two : {
-            "first_name" : "",
-            "last_name" : "",
-            "email" : "",
-            "phone" : "",
-            "contact_preference" : "",
-        }
-    };
+        return {
+            bigImage: "/images/submissions/step_2.png",
+            checkboxImg: "/images/submissions/car.jpeg",
+            step_two : {
+                "first_name" : "",
+                "last_name" : "",
+                "email" : null,
+                "phone" : null,
+                "contact_preference" : "",
+            }
+        };
     },
     watch: {
         step_two: {
